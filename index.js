@@ -9,14 +9,15 @@ function handleSearch(){
     
 }
 function handleHTML(movieData){
+   
    document.getElementById('movie').innerHTML+= `
             
    <div class="wrapper">
     <div class="movie--img">
-       <img src="${movieData.Poster}" alt="Movie cover poster">
+       <img src="${movieData.Poster!= "N/A"? `${movieData.Poster}`: '/images/error.png'}" alt="Movie cover poster">
     </div>
    
-   
+   <div>
     <div class="movie--about">
       <div class="movie-name">
         <h2>${movieData.Title}</h2>
@@ -26,11 +27,12 @@ function handleHTML(movieData){
        <p class="runtime--rating">${movieData.Runtime}<span class="rating-star">&#9733;  </span>${movieData.Ratings[0].Value}</p>
        
        <p>${movieData.Genre}</p>
-       <button class="watchlist">+ Watchlist</button>
+       <button class="watchlist"><i class="fa-solid fa-plus"></i> Watchlist</button>
     </div>
      <div class="movie--plot">
        <p>${movieData.Plot}</p>
      </div>
+    </div>
     </div>
    </div>
 
@@ -47,9 +49,15 @@ function handleApiCall(endpoint){
       document.getElementById('movie').innerHTML= ''
    for(let i =0;i<data.Search.length;i++){
       fetch(`https://www.omdbapi.com/?i=tt3896198&apikey=d09ad0f3&t=${data.Search[i].Title}`)
-         .then(res=>res.json())
+         .then((response)=>{
+            if(response.ok){
+               return response.json()
+            }else{
+               throw new Error("Something went wrong")
+            }
+         })
          .then(movieData=>{
-            
+            console.log(movieData)
            handleHTML(movieData);
          })}
       })
