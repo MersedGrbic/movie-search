@@ -8,6 +8,8 @@ function handleSearch(){
    handleApiCall(inputValue);
     
 }
+//Function handleHTML() is updating html with data from api call.
+
 function handleHTML(movieData){
    
    document.getElementById('movie').innerHTML+= `
@@ -43,7 +45,7 @@ function handleHTML(movieData){
 function saveWatchlist(id){
    document.getElementById("watchlist").innerHTML+= document.getElementById(id)
 }
-//Function handleApiCall() is invoced instide of handleSeach() functio to get data from api OMDb and update html with that data.
+//Function handleApiCall() is invoced inside of handleSearch() functio to get data from api OMDb and update html with that data.
 function handleApiCall(endpoint){
    fetch(`https://www.omdbapi.com/?i=tt3896198&apikey=d09ad0f3&s=${endpoint}`)
     .then(res=>res.json())

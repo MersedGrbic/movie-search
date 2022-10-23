@@ -86,19 +86,21 @@ body{
 .movie--img{
     width: 100%;
     text-align: center;
-    margin-top: 2rem;
+    margin: 2rem 0 0 1rem;
+    
 }
 .movie--img img{
     border-radius: 1rem;
-    
     width: 70%;
     max-height: 25rem;
+    
 }
    
 .movie--about{
     padding: 0 1em;
     display: flex;
     flex-direction: column;
+    
 }
 .movie--about p{
     font-size: 0.8em;
